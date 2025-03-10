@@ -90,7 +90,9 @@ nav {
 
 .about {
     padding: 4rem 1rem;
+    background-color: #111;
     text-align: center;
+    color: #ffffff;
 }
 
 .about-content {
@@ -173,15 +175,19 @@ nav {
 }
 
 .profile-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+    text-align: center;
+    
+    display: grid;
+        /* Geser foto ke kiri */
+    width: 180px;
+    border-radius: 15%;
+    border: 5px solid green;
 }
 
 .projects {
     padding: 4rem 1rem;
     text-align: center;
+    background-color: #111;
 }
 
 .project-grid {
@@ -209,9 +215,53 @@ nav {
     transform: translateY(-10px);
 }
 
+.typing-container {
+      font-size: 24px;
+      color: green; /* Ubah warna teks di sini */
+      white-space: nowrap; /* Agar teks tidak pindah baris */
+      border-right: 2px solid green; /* Membuat efek kursor kedip */
+      width: fit-content;
+      overflow: hidden;
+}
+
+/* Efek kedipan kursor */
+    @keyframes blinkCursor {
+      0% {
+        border-color: transparent;
+      }
+      50% {
+        border-color: green;
+      }
+      100% {
+        border-color: transparent;
+      }
+    }
+    .typing-container {
+      animation: blinkCursor 0.7s infinite;
+    }
+
+.intro {
+    margin-left: 20px;
+}
+
+.hire-btn {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .contact {
+    background-color: #111;
     padding: 4rem 1rem;
     text-align: center;
+    color: #ffffff;
 }
 
 .contact-form {
@@ -264,7 +314,7 @@ footer {
     <!-- Navigation Bar -->
     <header>
         <nav>
-            <div class="logo">Ariel AY</div>
+            <div class="logo">Ariel Aprielyullah</div>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -279,7 +329,7 @@ footer {
     <section id="home" class="hero">
         <div class="hero-content">
             <h1 class="typing-text">Hello World</h1>
-            <p>Saya adalah seorang Machine Learning dan Deep Learning yang berbakat di, OpenCV, YOLOv12, MediaPipe, dan Scikit-Learn.</p>
+            <p></p>
             <a href="#projects" class="btn">View My Projects</a>
         </div>
     </section>
@@ -289,11 +339,21 @@ footer {
         <h2>About Me</h2>
         <div class="about-content">
             <img src="images\Ariel AY.jpeg" alt="Profile Picture" class="profile-img">
-            <div class="bio">
-                <p>Hello! I'm Ariel Aprielyullah, a Diving. with expertise in Machine Learning, Deep Learning and Web Developer.</p>
-                <p>Selain itu, saya juga seorang pengembang Web seperti menggunakan Laravel (PHP), HTML, CSS, dan JavaScript.</p>
+            <div class="intro">
+                <h2>Hey I'm <span id="typingText" class="typing-container"></span></h2>
+                <h3>I'm a Programmer</h3>
+                <p>Professional in Web Development and Programming</p>
+                <p>I Can Build Projects In:</p>
+                <ul>
+                    <li>Machine Learning | Deep Learning</li>
+                    <li>Ultralytics YOLOv12 | OpenCV</li>
+                    <li>Django | Flask</li>
+                    <li>Scikit-Learn | ONNX</li>
+                    <li>Data Visualization | Data Science</li>
+                    <li>HTML | CSS | JavaScript</li>
+                </ul>
+                <button class="hire-btn">Bug Fixed</button>
             </div>
-        </div>
     </section>
 
     <!-- Projects Section -->
@@ -331,11 +391,26 @@ footer {
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Ariel AY. All rights reserved.</p>
+        <p>&copy; 2025 Ariel Aprielyullah. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript for Mobile Menu -->
     <script>
+        const text = "Ariel Aprielyullah";
+            let index = 0;
+            const speed = 100; // kecepatan ketik (ms)
+            const el = document.getElementById("typingText");
+
+            function type() {
+                if (index < text.length) {
+                    el.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, speed);
+                }
+            }
+
+            // Panggil fungsi ketika halaman dimuat
+            window.onload = type;
         const menuIcon = document.querySelector('.menu-icon');
         const navLinks = document.querySelector('.nav-links');
 
