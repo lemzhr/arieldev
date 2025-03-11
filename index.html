@@ -306,7 +306,42 @@ footer {
     .about-content {
         flex-direction: column;
     }
+    
 }
+
+h5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #ffffff;
+    background-color: #111;
+    width: 100%;  /* Pastikan background menutupi seluruh lebar */
+    padding: 20px 0; /* Tambah padding agar tidak terlalu rapat */
+    margin: 0; /* Hindari margin default yang bisa menyebabkan whitespace */
+    text-align: center;
+}
+
+.stack-container {
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 0; /* Hilangkan jarak putih */
+    padding: 20px 0; /* Tambahkan padding jika diperlukan */
+}
+
+.stack-container img {
+            width: 50px;
+            height: 50px;
+            transition: transform 0.3s ease;
+}
+
+.stack-container img:hover {
+            transform: scale(1.2);
+}
+
 
     </style>
 </head>
@@ -356,6 +391,22 @@ footer {
                 <button class="hire-btn">Bug Fixed v10</button>
             </div>
     </section>
+    
+    <h5>My Tech Stack</h5>
+    <div class="stack-container">
+        <img src="src\python.svg" alt="Python">
+        <img src="src\Laravel.png" alt="Laravel">
+        <img src="src\golang.png" alt="Golang">
+        <img src="src\nodejs.webp" alt="Nodejs">
+        <img src="src\seaborn.svg" alt="Seaborn">
+        <img src="src\Matplotlib.png" alt="Matplotlib">
+        <img src="src\mysql.avif" alt="MySQL">
+        <img src="src\PHP.svg" alt="PHP">
+        <img src="src\Typescript.png" alt="TypeSceipt">
+        <img src="src\JavaScript.png" alt="JavaScript">
+        <img src="src\CSS3.svg" alt="CSS3">
+        <img src="src\HTML5_shield.svg" alt="HTML">
+    </div>
 
     <!-- Projects Section -->
     <section id="projects" class="projects">
