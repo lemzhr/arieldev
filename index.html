@@ -360,6 +360,68 @@
         .stack-container img:hover {
             transform: scale(1.2);
         }
+
+/* Sembunyikan sertifikat saat awal */
+.certificate-wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 999;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Gaya saat aktif */
+.certificate-wrapper.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+/* Gambar sertifikat */
+.certificate {
+    width: 100%;
+    max-width: 400px; /* Sesuaikan ukuran */
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+/* Tombol tutup */
+.close-btn {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.close-btn:hover {
+    background: darkred;
+}
+
+/* Latar belakang gelap */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    display: none;
+}
+
     </style>
 </head>
 
@@ -405,7 +467,11 @@
                     <li>Data Visualization | Data Science</li>
                     <li>HTML | CSS | JavaScript</li>
                 </ul>
-                <button class="hire-btn">Bug Fixed v10</button>
+                <button class="hire-btn" onclick="toggleCertificate()">Sertifikat</button>
+                <div id="certificate-container" class="certificate-wrapper">
+                    <img src="images\Sertifikat - 1.png" alt="Sertifikat" class="certificate">
+                    <button class="close-btn" onclick="toggleCertificate()">Tutup</button>
+                </div>
             </div>
     </section>
 
@@ -482,6 +548,21 @@
                 setTimeout(type, speed);
             }
         }
+
+        function toggleCertificate() {
+                var certificateContainer = document.getElementById("certificate-container");
+                if (certificateContainer.classList.contains("active")) {
+                    certificateContainer.classList.remove("active");
+                    setTimeout(() => {
+                        certificateContainer.style.display = "none";
+                    }, 300);
+                } else {
+                    certificateContainer.style.display = "flex";
+                    setTimeout(() => {
+                        certificateContainer.classList.add("active");
+                    }, 10);
+                }
+            }
 
         // Panggil fungsi ketika halaman dimuat
         window.onload = type;
