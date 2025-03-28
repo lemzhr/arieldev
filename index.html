@@ -76,7 +76,7 @@
         }
 
         .btn {
-            background: #003d6f;
+            background: #008cff;
             color: #fff;
             padding: 0.75rem 1.5rem;
             text-decoration: none;
@@ -85,7 +85,7 @@
         }
 
         .btn:hover {
-            background: #003d6f;
+            background: rgb(16, 207, 255);
         }
 
         .about {
@@ -181,7 +181,7 @@
             /* Geser foto ke kiri */
             width: 180px;
             border-radius: 15%;
-            border: 5px solid green;
+            border: 5px solid rgb(255, 251, 0);
         }
 
         .projects {
@@ -208,29 +208,35 @@
         }
 
         .project-card video {
-    width: 100%; /* Sesuaikan dengan lebar card */
-    max-width: 300px; /* Atur ukuran maksimum */
-    height: auto; /* Sesuaikan tinggi secara proporsional */
-    border-radius: 10px; /* Tambahkan efek rounded */
-    display: block;
-    margin: 0 auto;
-}
+            width: 100%;
+            /* Sesuaikan dengan lebar card */
+            max-width: 300px;
+            /* Atur ukuran maksimum */
+            height: auto;
+            /* Sesuaikan tinggi secara proporsional */
+            border-radius: 10px;
+            /* Tambahkan efek rounded */
+            display: block;
+            margin: 0 auto;
+        }
 
         .project-card {
-    background-color: #0a3d62; /* Warna latar sesuai gambar kedua */
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    width: 320px; /* Sesuaikan agar seragam */
-}
+            background-color: #0a3d62;
+            /* Warna latar sesuai gambar kedua */
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            width: 320px;
+            /* Sesuaikan agar seragam */
+        }
 
         .typing-container {
             font-size: 24px;
-            color: green;
+            color: rgb(255, 251, 0);
             /* Ubah warna teks di sini */
             white-space: nowrap;
             /* Agar teks tidak pindah baris */
-            border-right: 2px solid green;
+            border-right: 2px solid rgb(255, 251, 0);
             /* Membuat efek kursor kedip */
             width: fit-content;
             overflow: hidden;
@@ -243,7 +249,7 @@
             }
 
             50% {
-                border-color: green;
+                border-color: rgb(0, 221, 255);
             }
 
             100% {
@@ -354,74 +360,105 @@
         .stack-container img {
             width: 50px;
             height: 50px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .stack-container img:hover {
-            transform: scale(1.2);
+            transform: scale(1.8);
+            filter: drop-shadow(0px 0px 10px rgba(255, 255, 255, 0.5));
         }
 
-/* Sembunyikan sertifikat saat awal */
-.certificate-wrapper {
-    position: fixed;
-    top: 50%;
+        /* Efek membesar untuk ikon sebelahnya */
+.stack-container img.active {
+    transform: scale(1.4);
+}
+
+.stack-container img.active + img {
+    transform: scale(1.2);
+}
+
+.stack-container img.active ~ img {
+    transition-delay: 0.1s;
+}
+
+/* Tooltip Nama Icon */
+.tooltip {
+    position: absolute;
+    bottom: 100px;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    z-index: 999;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Gaya saat aktif */
-.certificate-wrapper.active {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-}
-
-/* Gambar sertifikat */
-.certificate {
-    width: 100%;
-    max-width: 400px; /* Sesuaikan ukuran */
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-}
-
-/* Tombol tutup */
-.close-btn {
-    margin-top: 10px;
-    padding: 8px 16px;
-    background: red;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
     color: white;
-    border: none;
+    padding: 5px 10px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s;
+    font-size: 14px;
+    white-space: nowrap;
+    pointer-events: none; /* Agar tooltip tidak menghalangi klik */
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
 }
 
-.close-btn:hover {
-    background: darkred;
-}
+        /* Sembunyikan sertifikat saat awal */
+        .certificate-wrapper {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 999;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* Latar belakang gelap */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    display: none;
-}
+        /* Gaya saat aktif */
+        .certificate-wrapper.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
 
+        /* Gambar sertifikat */
+        .certificate {
+            width: 100%;
+            max-width: 400px;
+            /* Sesuaikan ukuran */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Tombol tutup */
+        .close-btn {
+            margin-top: 10px;
+            padding: 8px 16px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .close-btn:hover {
+            background: darkred;
+        }
+
+        /* Latar belakang gelap */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            display: none;
+        }
     </style>
 </head>
 
@@ -475,10 +512,9 @@
             </div>
     </section>
 
-    <h5>Programming Languages ​​I Learned</h5>
+    <h5>Pemrograman yang Saya Pelajari</h5>
     <div class="stack-container">
         <img src="images\Laravel.png" alt="Laravel">
-        <img src="images\PHP.svg" alt="PHP">
         <img src="images\golang.png" alt="Golang">
         <img src="images\nodejs.webp" alt="Nodejs">
         <img src="images\mysql.avif" alt="MySQL">
@@ -498,21 +534,26 @@
             <div class="project-card">
                 <video src="images\Video-1.mp4" controls></video>
                 <h3>Gesture-based Text Projection</h3>
-                <p>Teknologi yang memungkinkan teks muncul di layar berdasarkan gerakan tangan secara real-time. Dengan menggunakan sistem dapat mendeteksi gestur, mengenali pola gerakan, dan menampilkan teks dinamis tanpa
-                menyentuh perangkat.</p>
+                <p>Teknologi yang memungkinkan teks muncul di layar berdasarkan gerakan tangan secara real-time. Dengan
+                    menggunakan sistem dapat mendeteksi gestur, mengenali pola gerakan, dan menampilkan teks dinamis
+                    tanpa
+                    menyentuh perangkat.</p>
             </div>
             <div class="project-card">
                 <video src="images\Video-2.mp4" controls></video>
                 <h3>Detecting Objects</h3>
-                <p>Teknik dalam Computer Vision untuk mengenali dan menentukan objek dalam gambar atau video. Algoritma seperti
-                YOLO, Faster R-CNN, dan SSD memungkinkan deteksi objek secara real-time atau dengan akurasi tinggi</p>
+                <p>Teknik dalam Computer Vision untuk mengenali dan menentukan objek dalam gambar atau video. Algoritma
+                    seperti
+                    YOLO, Faster R-CNN, dan SSD memungkinkan deteksi objek secara real-time atau dengan akurasi tinggi
+                </p>
             </div>
             <div class="project-card">
                 <video src="images\Video-3.mp4" controls></video>
                 <h3>Color Tracking with OpenCV</h3>
                 <p>Teknik untuk mendeteksi dan melacak objek berdasarkan warna dalam gambar atau video.
-                Dengan menggunakan Thresholding HSV, Masking, dan Kontur, OpenCV dapat mengenali objek berwarna tertentu secara
-                Real-Time.</p>
+                    Dengan menggunakan Thresholding HSV, Masking, dan Kontur, OpenCV dapat mengenali objek berwarna
+                    tertentu secara
+                    Real-Time.</p>
             </div>
         </div>
     </section>
@@ -550,19 +591,19 @@
         }
 
         function toggleCertificate() {
-                var certificateContainer = document.getElementById("certificate-container");
-                if (certificateContainer.classList.contains("active")) {
-                    certificateContainer.classList.remove("active");
-                    setTimeout(() => {
-                        certificateContainer.style.display = "none";
-                    }, 300);
-                } else {
-                    certificateContainer.style.display = "flex";
-                    setTimeout(() => {
-                        certificateContainer.classList.add("active");
-                    }, 10);
-                }
+            var certificateContainer = document.getElementById("certificate-container");
+            if (certificateContainer.classList.contains("active")) {
+                certificateContainer.classList.remove("active");
+                setTimeout(() => {
+                    certificateContainer.style.display = "none";
+                }, 300);
+            } else {
+                certificateContainer.style.display = "flex";
+                setTimeout(() => {
+                    certificateContainer.classList.add("active");
+                }, 10);
             }
+        }
 
         // Panggil fungsi ketika halaman dimuat
         window.onload = type;
