@@ -590,7 +590,6 @@ button:hover {
                 </div>
 
 
-
             </div>
     </section>
 
@@ -677,24 +676,31 @@ button:hover {
 
 
         let availableVoices = [];
+            let voicesLoaded = false;
 
             function openTextToSpeechModal() {
                 document.getElementById("popupContainer").style.display = "block";
+                if (!voicesLoaded) {
+                    loadVoicesUntilAvailable();
+                }
             }
 
             function closeTextToSpeechModal() {
                 document.getElementById("popupContainer").style.display = "none";
             }
 
-            function populateVoiceList() {
+            function loadVoicesUntilAvailable(attempts = 0) {
                 const voices = speechSynthesis.getVoices();
-
-                if (voices.length === 0) {
-                    setTimeout(populateVoiceList, 100);
-                    return;
+                if (voices.length > 0 || attempts >= 10) {
+                    populateVoiceList();
+                    voicesLoaded = true;
+                } else {
+                    setTimeout(() => loadVoicesUntilAvailable(attempts + 1), 200);
                 }
+            }
 
-                availableVoices = voices;
+            function populateVoiceList() {
+                availableVoices = speechSynthesis.getVoices();
                 const select = document.getElementById("voice-select");
                 select.innerHTML = "";
 
@@ -703,12 +709,12 @@ button:hover {
                     "Wanita": []
                 };
 
-                voices.forEach(voice => {
+                availableVoices.forEach(voice => {
                     const name = voice.name.toLowerCase();
 
-                    if (name.includes("female") || name.includes("zira") || name.includes("samantha") || name.includes("woman")) {
+                    if (name.includes("female") || name.includes("woman") || name.includes("zira") || name.includes("samantha")) {
                         categories["Wanita"].push(voice);
-                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel") || name.includes("man")) {
+                    } else if (name.includes("male") || name.includes("man") || name.includes("david") || name.includes("daniel")) {
                         categories["Pria"].push(voice);
                     }
                 });
@@ -724,7 +730,7 @@ button:hover {
 
                 if (select.options.length === 0) {
                     const option = document.createElement("option");
-                    option.textContent = "Tidak ada suara tersedia";
+                    option.textContent = "Suara tidak tersedia";
                     option.disabled = true;
                     select.appendChild(option);
                 }
@@ -749,16 +755,18 @@ button:hover {
                 speechSynthesis.speak(utterance);
             }
 
-            // Inisialisasi
-            speechSynthesis.onvoiceschanged = populateVoiceList;
-            window.onload = populateVoiceList;
+            // Event binding
+            window.onload = () => {
+                if (typeof speechSynthesis !== "undefined") {
+                    loadVoicesUntilAvailable();
+                    speechSynthesis.onvoiceschanged = () => populateVoiceList();
+                }
+            };
 
             document.getElementById("openPopupBtn").addEventListener("click", openTextToSpeechModal);
             document.getElementById("closePopupBtn").addEventListener("click", closeTextToSpeechModal);
             document.getElementById("speakBtn").addEventListener("click", speakCustomText);
 
-            
-        
 
         window.onload = type;
         const menuIcon = document.querySelector('.menu-icon');
