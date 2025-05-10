@@ -385,11 +385,14 @@
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(5px);
-  padding: 40px;
+  padding: 30px;
   border-radius: 16px;
-  z-index: 9999;
-  width: 90%;
-  max-width: 400px;
+  z-index: 999;
+  flex-direction: column;
+    align-items: center;
+    min-width: 40vw;
+  width: 50%;
+  max-width: 90vw;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
@@ -778,10 +781,11 @@ select#voiceSelect {
             }
         }
 
+
         let availableVoices = [];
 
             function openTextToSpeechModal() {
-                document.getElementById("popupContainer").style.display = "block";
+                document.getElementById("popupContainer").style.display = "flex"; // agar muncul di tengah
             }
 
             function closeTextToSpeechModal() {
@@ -795,20 +799,16 @@ select#voiceSelect {
 
                 const categories = {
                     "Pria": [],
-                    "Wanita": [],
-                    "Robot": [],
+                    "Wanita": []
                 };
 
                 availableVoices.forEach(voice => {
                     const name = voice.name.toLowerCase();
 
-                    if (name.includes("female") || name.includes("zira") || name.includes("samantha")) {
+                    if (name.includes("female") || name.includes("zira") || name.includes("samantha") || name.includes("woman")) {
                         categories["Wanita"].push(voice);
-                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel")) {
+                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel") || name.includes("man")) {
                         categories["Pria"].push(voice);
-                    } else if (name.includes("zarvox") || name.includes("trinoids")) {
-                    } else {
-                        categories["Robot"].push(voice);
                     }
                 });
 
@@ -820,6 +820,14 @@ select#voiceSelect {
                         select.appendChild(option);
                     });
                 });
+
+                // Tambahkan pesan jika tidak ada suara ditemukan
+                if (select.options.length === 0) {
+                    const option = document.createElement("option");
+                    option.textContent = "Tidak ada suara tersedia";
+                    option.disabled = true;
+                    select.appendChild(option);
+                }
             }
 
             function speakCustomText() {
@@ -832,15 +840,18 @@ select#voiceSelect {
                 }
 
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = "id-ID";
                 const selectedVoice = availableVoices.find(v => v.name === selectedVoiceName);
-                if (selectedVoice) utterance.voice = selectedVoice;
+                if (selectedVoice) {
+                    utterance.voice = selectedVoice;
+                }
+
                 utterance.pitch = 1;
                 utterance.rate = 1;
+                utterance.lang = "id-ID"; // pakai bahasa Indonesia jika tersedia
                 speechSynthesis.speak(utterance);
             }
 
-            // Inisialisasi
+            // Inisialisasi suara
             speechSynthesis.onvoiceschanged = populateVoiceList;
             window.onload = populateVoiceList;
 
@@ -849,7 +860,6 @@ select#voiceSelect {
             document.getElementById("closePopupBtn").addEventListener("click", closeTextToSpeechModal);
             document.getElementById("speakBtn").addEventListener("click", speakCustomText);
 
-            
         
 
         window.onload = type;
