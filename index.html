@@ -375,66 +375,160 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-        
-        .certificate-wrapper {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            z-index: 999;
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-            opacity: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+/* POPUP MODAL */
+#popupContainer {
+  display: none; /* agar tidak tampil awalnya */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  padding: 40px;
+  border-radius: 16px;
+  z-index: 9999;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
 
-        
-        .certificate-wrapper.active {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
+/* Perjelas dropdown suara */
+select#voiceSelect {
+  background-color: rgba(255, 255, 255, 0.9); /* lebih jelas */
+  color: #333;
+  padding: 10px;
+  border-radius: 12px;
+  width: 100%;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
 
-        
-        .certificate {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-        }
+/* Tombol */
+button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  background-color: #5e35b1;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.2s ease;
+}
+button:hover {
+  background-color: #7e57c2;
+}
 
-        
-        .close-btn {
-            margin-top: 10px;
-            padding: 8px 16px;
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
 
-        .close-btn:hover {
-            background: darkred;
-        }
+/* Modal backdrop */
+.tts-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Modal content */
+  .tts-content {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    color: white;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  
+  /* Label */
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #eeeeee;
+    text-align: left;
+  }
+  
+  /* Dropdown suara */
+  #voice-select {
+    width: 100%;
+    padding: 5px;
+    border-radius: 12px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    font-size: 14px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
+  }
+  
+  #voice-select option {
+    background: #222;
+    color: #fff;
+  }
+  
+  /* Textarea */
+  #tts-textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    color: #333;
+    resize: none;
+  }
 
-        
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 998;
-            display: none;
-        }
+  /* Perbesar area input teks */
+#tts-input {
+    width: 100%;
+    height: 150px; /* Meningkatkan tinggi textarea */
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 12px;
+    border: none;
+    font-size: 16px;
+    color: #333;
+    resize: none; /* Menonaktifkan resize manual agar tetap konsisten */
+}
+
+  
+  /* Buttons */
+  .tts-button {
+    margin: 20px 10px 0;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #673ab7, #512da8);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  .tts-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(145deg, #7e57c2, #5e35b1);
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  
     </style>
 </head>
 
@@ -480,11 +574,29 @@
                     <li>Data Visualization | Data Science</li>
                     <li>HTML | CSS | JavaScript</li>
                 </ul>
-                <button class="hire-btn" onclick="toggleCertificate()">Sertifikat</button>
-                <div id="certificate-container" class="certificate-wrapper">
-                    <img src="images\Sertifikat - 1.png" alt="Sertifikat" class="certificate">
-                    <button class="close-btn" onclick="toggleCertificate()">Tutup</button>
+                
+                <button id="openPopupBtn">Buka Text-to-Speech</button>
+                
+                <div id="popupContainer">
+                    <!-- Konten popup -->
+                    <label for="voice-select">Pilih suara:</label>
+                    <select id="voice-select">
+                        <option value="pria">Pria</option>
+                        <option value="wanita">Wanita</option>
+                        <option value="robot">Robot</option>
+                        <option value="kayu">Kayu</option>
+                        <option value="alien">Alien</option>
+                    </select>
+                
+                    <textarea id="tts-input" placeholder="Tulis sesuatu..."></textarea>
+                
+                    <div>
+                        <button id="speakBtn" class="tts-button">Ucapkan</button>
+                        <button id="closePopupBtn" class="tts-button">Tutup</button>
+                    </div>
                 </div>
+
+
             </div>
     </section>
 
@@ -569,20 +681,84 @@
             }
         }
 
-        function toggleCertificate() {
-            var certificateContainer = document.getElementById("certificate-container");
-            if (certificateContainer.classList.contains("active")) {
-                certificateContainer.classList.remove("active");
-                setTimeout(() => {
-                    certificateContainer.style.display = "none";
-                }, 300);
-            } else {
-                certificateContainer.style.display = "flex";
-                setTimeout(() => {
-                    certificateContainer.classList.add("active");
-                }, 10);
+        let availableVoices = [];
+
+            function openTextToSpeechModal() {
+                document.getElementById("popupContainer").style.display = "block";
             }
-        }
+
+            function closeTextToSpeechModal() {
+                document.getElementById("popupContainer").style.display = "none";
+            }
+
+            function populateVoiceList() {
+                availableVoices = speechSynthesis.getVoices();
+                const select = document.getElementById("voice-select");
+                select.innerHTML = "";
+
+                const categories = {
+                    "Pria": [],
+                    "Wanita": [],
+                    "Robot": [],
+                    "Kayu": [],
+                    "Alien": []
+                };
+
+                availableVoices.forEach(voice => {
+                    const name = voice.name.toLowerCase();
+
+                    if (name.includes("female") || name.includes("zira") || name.includes("samantha")) {
+                        categories["Wanita"].push(voice);
+                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel")) {
+                        categories["Pria"].push(voice);
+                    } else if (name.includes("zarvox") || name.includes("trinoids")) {
+                        categories["Alien"].push(voice);
+                    } else if (name.includes("fred")) {
+                        categories["Kayu"].push(voice);
+                    } else {
+                        categories["Robot"].push(voice);
+                    }
+                });
+
+                Object.entries(categories).forEach(([label, voices]) => {
+                    voices.forEach(voice => {
+                        const option = document.createElement("option");
+                        option.value = voice.name;
+                        option.textContent = `${label}: ${voice.name}`;
+                        select.appendChild(option);
+                    });
+                });
+            }
+
+            function speakCustomText() {
+                const text = document.getElementById("tts-input").value;
+                const selectedVoiceName = document.getElementById("voice-select").value;
+
+                if (!text.trim()) {
+                    alert("Silakan tulis sesuatu terlebih dahulu.");
+                    return;
+                }
+
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = "id-ID";
+                const selectedVoice = availableVoices.find(v => v.name === selectedVoiceName);
+                if (selectedVoice) utterance.voice = selectedVoice;
+                utterance.pitch = 1;
+                utterance.rate = 1;
+                speechSynthesis.speak(utterance);
+            }
+
+            // Inisialisasi
+            speechSynthesis.onvoiceschanged = populateVoiceList;
+            window.onload = populateVoiceList;
+
+            // Event Listeners
+            document.getElementById("openPopupBtn").addEventListener("click", openTextToSpeechModal);
+            document.getElementById("closePopupBtn").addEventListener("click", closeTextToSpeechModal);
+            document.getElementById("speakBtn").addEventListener("click", speakCustomText);
+
+            
+        
 
         window.onload = type;
         const menuIcon = document.querySelector('.menu-icon');
