@@ -677,21 +677,22 @@ select#voiceSelect {
                     <li>HTML | CSS | JavaScript</li>
                 </ul>
                 
-                <button id="openPopupBtn" class="openPopupBtn">Text ke Suara</button>
+                <!-- Tombol buka popup -->
+                <button id="openPopupBtn" class="openPopupBtn">🔊 Tulis & Ucapkan</button>
                 
-                <div id="popupContainer">
-                    <!-- Konten popup -->
-                    <label for="voice-select">Pilih suara:</label>
-                    <select id="voice-select">
-                    </select>
+                <!-- Kontainer popup -->
+                <div id="popupContainer" class="popup-container">
+                    <label for="voice-select" class="popup-label">Pilih suara:</label>
+                    <select id="voice-select" class="popup-select"></select>
                 
-                    <textarea id="tts-input" placeholder="Tulis sesuatu..."></textarea>
+                    <textarea id="tts-input" class="popup-textarea" placeholder="Tulis sesuatu..."></textarea>
                 
-                    <div>
-                        <button id="speakBtn" class="tts-button">Ucapkan</button>
-                        <button id="closePopupBtn" class="tts-button">Tutup</button>
+                    <div class="popup-buttons">
+                        <button id="speakBtn" class="tts-button speak">Ucapkan</button>
+                        <button id="closePopupBtn" class="tts-button close">Tutup</button>
                     </div>
                 </div>
+
 
 
             </div>
