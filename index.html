@@ -609,7 +609,7 @@ select#voiceSelect {
     padding: 12px 20px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(145deg, #673ab7, #512da8);
+    background: linear-gradient(145deg, hsla(152, 100%, 50%, 0.75), hsl(260 97% 61% / 0.75));
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -618,7 +618,7 @@ select#voiceSelect {
   
   .tts-button:hover {
     transform: scale(1.05);
-    background: linear-gradient(145deg, #7e57c2, #5e35b1);
+    background: linear-gradient(145deg, hsl(260 97% 61% / 0.75), hsla(152, 100%, 50%, 0.75));
   }
   
 
@@ -683,8 +683,6 @@ select#voiceSelect {
                         <option value="pria">Pria</option>
                         <option value="wanita">Wanita</option>
                         <option value="robot">Robot</option>
-                        <option value="kayu">Kayu</option>
-                        <option value="alien">Alien</option>
                     </select>
                 
                     <textarea id="tts-input" placeholder="Tulis sesuatu..."></textarea>
@@ -799,8 +797,6 @@ select#voiceSelect {
                     "Pria": [],
                     "Wanita": [],
                     "Robot": [],
-                    "Kayu": [],
-                    "Alien": []
                 };
 
                 availableVoices.forEach(voice => {
@@ -811,9 +807,6 @@ select#voiceSelect {
                     } else if (name.includes("male") || name.includes("david") || name.includes("daniel")) {
                         categories["Pria"].push(voice);
                     } else if (name.includes("zarvox") || name.includes("trinoids")) {
-                        categories["Alien"].push(voice);
-                    } else if (name.includes("fred")) {
-                        categories["Kayu"].push(voice);
                     } else {
                         categories["Robot"].push(voice);
                     }
