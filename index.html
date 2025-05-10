@@ -375,30 +375,27 @@
     transition: opacity 0.2s ease-in-out;
 }
 
-
+/* POPUP MODAL */
 #popupContainer {
-  display: none;
+  display: none; /* agar tidak tampil awalnya */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(15px);
   padding: 30px;
   border-radius: 16px;
-  z-index: 999;
-  flex-direction: column;
-  align-items: center;
-  min-width: 300px;
-  width: 50%;
-  max-width: 50px;
+  z-index: 9999;
+  width: 90%;
+  max-width: 400px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-
+/* Perjelas dropdown suara */
 select#voiceSelect {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.9); /* lebih jelas */
   color: #333;
   padding: 10px;
   border-radius: 12px;
@@ -407,123 +404,24 @@ select#voiceSelect {
   font-weight: bold;
 }
 
-.openPopupBtn {
-    --active: 0;
-    --transition: 0.3s;
-    --bg: radial-gradient(
-        40% 50% at center 100%,
-        hsl(270 calc(var(--active) * 97%) 72% / var(--active)),
-        transparent
-      ),
-      radial-gradient(
-        80% 100% at center 120%,
-        hsl(260 calc(var(--active) * 97%) 70% / var(--active)),
-        transparent
-      ),
-      hsl(260 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
-    background: var(--bg);
-    font-size: 1.2rem;
-    font-weight: 500;
-    border: none;
-    cursor: pointer;
-    padding: 15px 32px;
-    display: inline-block;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow var(--transition), scale var(--transition);
-    scale: calc(1 + (var(--active) * 0.1));
-    box-shadow: 0 0 calc(var(--active) * 3em) calc(var(--active) * 1em) hsl(260 97% 61% / 0.75),
-                0 0em 0 0 hsl(260 calc(var(--active) * 97%) calc((var(--active) * 50%) + 30%)) inset,
-                0 -0.05em 0 0 hsl(260 calc(var(--active) * 97%) calc(var(--active) * 60%)) inset;
-  }
-  
-  .openPopupBtn:hover {
-    --active: 1;
-    transform: scale(1.1);
-  }
-  
-  .openPopupBtn:active {
-    scale: 1;
-    transition: 0.3s;
-  }
-  
-
-  .openPopupBtn::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: hsla(152, 100%, 50%, 0.75);
-    animation: sparkle 1s infinite;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-  
-  @keyframes sparkle {
-    0% {
-      transform: scale(0) translate(-50%, -50%);
-      opacity: 0;
-    }
-    50% {
-      transform: scale(1) translate(-50%, -50%);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(0) translate(-50%, -50%);
-      opacity: 0;
-    }
-  }
-  
-
-  .popup {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    overflow: auto;
-  }
-  
-  .popup-content {
-    background-color: white;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    position: relative;
-    border-radius: 12px;
-  }
-  
-  .close-btn {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    cursor: pointer;
-  }
-  
-  .close-btn:hover,
-  .close-btn:focus {
-    color: black;
-    text-decoration: none;
-  }
-  
+/* Tombol */
+button {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: none;
+  font-weight: bold;
+  background-color: #5e35b1;
+  color: white;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.2s ease;
+}
+button:hover {
+  background-color: #7e57c2;
+}
 
 
+/* Modal backdrop */
 .tts-modal {
     position: fixed;
     top: 0;
@@ -537,7 +435,7 @@ select#voiceSelect {
     z-index: 9999;
   }
   
- 
+  /* Modal content */
   .tts-content {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -552,7 +450,7 @@ select#voiceSelect {
     animation: fadeIn 0.4s ease-in-out;
   }
   
-
+  /* Label */
   label {
     display: block;
     margin-bottom: 10px;
@@ -561,15 +459,15 @@ select#voiceSelect {
     text-align: left;
   }
   
-
+  /* Dropdown suara */
   #voice-select {
-    width: 100%;
+    width: 70%;
     padding: 5px;
     border-radius: 12px;
     border: none;
     background-color: rgba(255, 255, 255, 0.15);
     color: #ffffff;
-    font-size: 14px;
+    font-size: 13px;
     backdrop-filter: blur(6px);
     box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
   }
@@ -579,7 +477,7 @@ select#voiceSelect {
     color: #fff;
   }
   
-
+  /* Textarea */
   #tts-textarea {
     width: 100%;
     height: 100px;
@@ -591,28 +489,15 @@ select#voiceSelect {
     color: #333;
     resize: none;
   }
-
-
-#tts-input {
-    width: 100%;
-    height: 150px;
-    margin-top: 20px;
-    padding: 12px;
-    border-radius: 12px;
-    border: none;
-    font-size: 16px;
-    color: #333;
-    resize: none;
-}
-
   
- 
+  
+  /* Buttons */
   .tts-button {
     margin: 20px 10px 0;
     padding: 12px 20px;
     border: none;
     border-radius: 12px;
-    background: linear-gradient(145deg, hsla(152, 100%, 50%, 0.75), hsl(260 97% 61% / 0.75));
+    background: linear-gradient(145deg, #673ab7, #512da8);
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -621,10 +506,23 @@ select#voiceSelect {
   
   .tts-button:hover {
     transform: scale(1.05);
-    background: linear-gradient(145deg, hsl(260 97% 61% / 0.75), hsla(152, 100%, 50%, 0.75));
+    background: linear-gradient(145deg, #7e57c2, #5e35b1);
   }
   
+#tts-input {
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 80px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  backdrop-filter: blur(4px);
+}
 
+
+  /* Animation */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-20px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -677,22 +575,26 @@ select#voiceSelect {
                     <li>HTML | CSS | JavaScript</li>
                 </ul>
                 
-                <!-- Tombol buka popup -->
-                <button id="openPopupBtn" class="openPopupBtn">🔊 Tulis & Ucapkan</button>
+                <button id="openPopupBtn">Buka Text-to-Speech</button>
                 
-                <!-- Kontainer popup -->
-                <div id="popupContainer" class="popup-container">
-                    <label for="voice-select" class="popup-label">Pilih suara:</label>
-                    <select id="voice-select" class="popup-select"></select>
+                <div id="popupContainer">
+                    <!-- Konten popup -->
+                    <label for="voice-select">Pilih suara:</label>
+                    <select id="voice-select">
+                        <option value="pria">Pria</option>
+                        <option value="wanita">Wanita</option>
+                        <option value="robot">Robot</option>
+                        <option value="kayu">Kayu</option>
+                        <option value="alien">Alien</option>
+                    </select>
                 
-                    <textarea id="tts-input" class="popup-textarea" placeholder="Tulis sesuatu..."></textarea>
+                    <textarea id="tts-input" placeholder="Tulis sesuatu..."></textarea>
                 
-                    <div class="popup-buttons">
-                        <button id="speakBtn" class="tts-button speak">Ucapkan</button>
-                        <button id="closePopupBtn" class="tts-button close">Tutup</button>
+                    <div>
+                        <button id="speakBtn" class="tts-button">Ucapkan</button>
+                        <button id="closePopupBtn" class="tts-button">Tutup</button>
                     </div>
                 </div>
-
 
 
             </div>
@@ -779,11 +681,10 @@ select#voiceSelect {
             }
         }
 
-
         let availableVoices = [];
 
             function openTextToSpeechModal() {
-                document.getElementById("popupContainer").style.display = "flex"; // agar muncul di tengah
+                document.getElementById("popupContainer").style.display = "block";
             }
 
             function closeTextToSpeechModal() {
@@ -797,16 +698,25 @@ select#voiceSelect {
 
                 const categories = {
                     "Pria": [],
-                    "Wanita": []
+                    "Wanita": [],
+                    "Robot": [],
+                    "Kayu": [],
+                    "Alien": []
                 };
 
                 availableVoices.forEach(voice => {
                     const name = voice.name.toLowerCase();
 
-                    if (name.includes("female") || name.includes("zira") || name.includes("samantha") || name.includes("woman")) {
+                    if (name.includes("female") || name.includes("zira") || name.includes("samantha")) {
                         categories["Wanita"].push(voice);
-                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel") || name.includes("man")) {
+                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel")) {
                         categories["Pria"].push(voice);
+                    } else if (name.includes("zarvox") || name.includes("trinoids")) {
+                        categories["Alien"].push(voice);
+                    } else if (name.includes("fred")) {
+                        categories["Kayu"].push(voice);
+                    } else {
+                        categories["Robot"].push(voice);
                     }
                 });
 
@@ -818,14 +728,6 @@ select#voiceSelect {
                         select.appendChild(option);
                     });
                 });
-
-                // Tambahkan pesan jika tidak ada suara ditemukan
-                if (select.options.length === 0) {
-                    const option = document.createElement("option");
-                    option.textContent = "Tidak ada suara tersedia";
-                    option.disabled = true;
-                    select.appendChild(option);
-                }
             }
 
             function speakCustomText() {
@@ -838,18 +740,15 @@ select#voiceSelect {
                 }
 
                 const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = "id-ID";
                 const selectedVoice = availableVoices.find(v => v.name === selectedVoiceName);
-                if (selectedVoice) {
-                    utterance.voice = selectedVoice;
-                }
-
+                if (selectedVoice) utterance.voice = selectedVoice;
                 utterance.pitch = 1;
                 utterance.rate = 1;
-                utterance.lang = "id-ID"; // pakai bahasa Indonesia jika tersedia
                 speechSynthesis.speak(utterance);
             }
 
-            // Inisialisasi suara
+            // Inisialisasi
             speechSynthesis.onvoiceschanged = populateVoiceList;
             window.onload = populateVoiceList;
 
@@ -858,6 +757,7 @@ select#voiceSelect {
             document.getElementById("closePopupBtn").addEventListener("click", closeTextToSpeechModal);
             document.getElementById("speakBtn").addEventListener("click", speakCustomText);
 
+            
         
 
         window.onload = type;
