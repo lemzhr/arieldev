@@ -577,16 +577,9 @@ button:hover {
                 
                 <button id="openPopupBtn">Buka Text-to-Speech</button>
                 
-                <div id="popupContainer">
-                    <!-- Konten popup -->
+                <div id="popupContainer" style="display:none;">
                     <label for="voice-select">Pilih suara:</label>
-                    <select id="voice-select">
-                        <option value="pria">Pria</option>
-                        <option value="wanita">Wanita</option>
-                        <option value="robot">Robot</option>
-                        <option value="kayu">Kayu</option>
-                        <option value="alien">Alien</option>
-                    </select>
+                    <select id="voice-select"></select>
                 
                     <textarea id="tts-input" placeholder="Tulis sesuatu..."></textarea>
                 
@@ -595,6 +588,7 @@ button:hover {
                         <button id="closePopupBtn" class="tts-button">Tutup</button>
                     </div>
                 </div>
+
 
 
             </div>
@@ -681,6 +675,7 @@ button:hover {
             }
         }
 
+
         let availableVoices = [];
 
             function openTextToSpeechModal() {
@@ -692,61 +687,48 @@ button:hover {
             }
 
             function populateVoiceList() {
-                    // Tunggu sampai suara dimuat sepenuhnya
-                    const voices = speechSynthesis.getVoices();
-                    if (voices.length === 0) {
-                        // Coba lagi setelah sedikit delay jika belum tersedia
-                        setTimeout(populateVoiceList, 100);
-                        return;
-                    }
+                const voices = speechSynthesis.getVoices();
 
-                    availableVoices = voices;
-                    const select = document.getElementById("voice-select");
-                    select.innerHTML = "";
-
-                    const categories = {
-                        "Pria": [],
-                        "Wanita": [],
-                        "Robot": [],
-                        "Kayu": [],
-                        "Alien": []
-                    };
-
-                    voices.forEach(voice => {
-                        const name = voice.name.toLowerCase();
-
-                        if (name.includes("female") || name.includes("zira") || name.includes("samantha") || name.includes("woman")) {
-                            categories["Wanita"].push(voice);
-                        } else if (name.includes("male") || name.includes("david") || name.includes("daniel") || name.includes("man")) {
-                            categories["Pria"].push(voice);
-                        } else if (name.includes("zarvox") || name.includes("trinoids")) {
-                            categories["Alien"].push(voice);
-                        } else if (name.includes("fred")) {
-                            categories["Kayu"].push(voice);
-                        } else {
-                            categories["Robot"].push(voice);
-                        }
-                    });
-
-                    Object.entries(categories).forEach(([label, voices]) => {
-                        voices.forEach(voice => {
-                            const option = document.createElement("option");
-                            option.value = voice.name;
-                            option.textContent = `${label}: ${voice.name}`;
-                            select.appendChild(option);
-                        });
-                    });
-
-                    // Tambahkan pesan jika tidak ada suara ditemukan
-                    if (select.options.length === 0) {
-                        const option = document.createElement("option");
-                        option.textContent = "Tidak ada suara tersedia";
-                        option.disabled = true;
-                        select.appendChild(option);
-                    }
+                if (voices.length === 0) {
+                    setTimeout(populateVoiceList, 100);
+                    return;
                 }
-            
 
+                availableVoices = voices;
+                const select = document.getElementById("voice-select");
+                select.innerHTML = "";
+
+                const categories = {
+                    "Pria": [],
+                    "Wanita": []
+                };
+
+                voices.forEach(voice => {
+                    const name = voice.name.toLowerCase();
+
+                    if (name.includes("female") || name.includes("zira") || name.includes("samantha") || name.includes("woman")) {
+                        categories["Wanita"].push(voice);
+                    } else if (name.includes("male") || name.includes("david") || name.includes("daniel") || name.includes("man")) {
+                        categories["Pria"].push(voice);
+                    }
+                });
+
+                Object.entries(categories).forEach(([label, voices]) => {
+                    voices.forEach(voice => {
+                        const option = document.createElement("option");
+                        option.value = voice.name;
+                        option.textContent = `${label}: ${voice.name}`;
+                        select.appendChild(option);
+                    });
+                });
+
+                if (select.options.length === 0) {
+                    const option = document.createElement("option");
+                    option.textContent = "Tidak ada suara tersedia";
+                    option.disabled = true;
+                    select.appendChild(option);
+                }
+            }
 
             function speakCustomText() {
                 const text = document.getElementById("tts-input").value;
@@ -758,9 +740,10 @@ button:hover {
                 }
 
                 const utterance = new SpeechSynthesisUtterance(text);
-                utterance.lang = "id-ID";
                 const selectedVoice = availableVoices.find(v => v.name === selectedVoiceName);
                 if (selectedVoice) utterance.voice = selectedVoice;
+
+                utterance.lang = "id-ID";
                 utterance.pitch = 1;
                 utterance.rate = 1;
                 speechSynthesis.speak(utterance);
@@ -770,7 +753,6 @@ button:hover {
             speechSynthesis.onvoiceschanged = populateVoiceList;
             window.onload = populateVoiceList;
 
-            // Event Listeners
             document.getElementById("openPopupBtn").addEventListener("click", openTextToSpeechModal);
             document.getElementById("closePopupBtn").addEventListener("click", closeTextToSpeechModal);
             document.getElementById("speakBtn").addEventListener("click", speakCustomText);
