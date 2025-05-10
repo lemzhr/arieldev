@@ -682,6 +682,7 @@ select#voiceSelect {
                     <select id="voice-select">
                         <option value="pria">Pria</option>
                         <option value="wanita">Wanita</option>
+                        <option value="robot">Robot</option>
                     </select>
                 
                     <textarea id="tts-input" placeholder="Tulis sesuatu..."></textarea>
@@ -795,6 +796,7 @@ select#voiceSelect {
                 const categories = {
                     "Pria": [],
                     "Wanita": [],
+                    "Robot": [],
                 };
 
                 availableVoices.forEach(voice => {
@@ -805,6 +807,8 @@ select#voiceSelect {
                     } else if (name.includes("male") || name.includes("david") || name.includes("daniel")) {
                         categories["Pria"].push(voice);
                     } else if (name.includes("zarvox") || name.includes("trinoids")) {
+                    } else {
+                        categories["Robot"].push(voice);
                     }
                 });
 
