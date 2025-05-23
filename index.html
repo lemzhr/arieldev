@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A responsive portfolio website showcasing my work and skills.">
     <title>Ariel Aprielyullah</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -20,18 +21,42 @@
         }
 
         header {
-            background: #000;
+            background: #003d6f;
             color: #fff;
             padding: 1rem 0;
         }
 
         nav {
             display: flex;
+            gap: 2rem;
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1rem;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+        }
+        nav a:hover {
+            color: rgb(255, 251, 0);
+        }
+        nav a::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: rgb(255, 251, 0);
+            transition: width 0.3s ease;
+        }
+        nav a:hover::after {
+            width: 100%;
         }
 
         .logo {
@@ -179,7 +204,7 @@
         .projects {
             padding: 4rem 1rem;
             text-align: center;
-            background-color: #ffffff;
+            background-color: #faf8f8;
             color: #000000;
         }
 
@@ -262,7 +287,7 @@
         }
 
         .contact {
-            background-color: #111;
+            background-color: #0a3d62;
             padding: 4rem 1rem;
             text-align: center;
             color: #ffffff;
@@ -317,7 +342,7 @@
             align-items: center;
             font-size: 24px;
             color: #000000;
-            background-color: #ffffff;
+            background-color: #faf8f8;
             width: 100%;
             padding: 20px 0;
             margin: 0;
@@ -325,7 +350,7 @@
         }
 
         .stack-container {
-            background-color: #ffffff;
+            background-color: #faf8f8;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
@@ -403,8 +428,8 @@ select#voiceSelect {
 }
 
 .openPopupBtn {
-    --active: 0;
-    --transition: 0.3s;
+    --active:0;
+    --transition: 0.50s;
     --bg: radial-gradient(
         40% 50% at center 100%,
         hsl(270 calc(var(--active) * 97%) 72% / var(--active)),
@@ -417,16 +442,16 @@ select#voiceSelect {
       ),
       hsl(260 calc(var(--active) * 97%) calc((var(--active) * 44%) + 12%));
     background: var(--bg);
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 500;
     border: none;
     cursor: pointer;
-    padding: 15px 32px;
+    padding: 11px 8px;
     display: inline-block;
     text-align: center;
     text-decoration: none;
     color: white;
-    border-radius: 12px;
+    border-radius: 10px;
     position: relative;
     overflow: hidden;
     transition: background-color 0.3s, transform 0.2s ease-in-out, box-shadow var(--transition), scale var(--transition);
@@ -453,7 +478,7 @@ select#voiceSelect {
     left: 50%;
     width: 300%;
     height: 300%;
-    background: hsla(75, 100%, 61%, 0.75);
+    background: hsla(75, 100%, 50%, 0.75);
     animation: sparkle 1s infinite;
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -614,6 +639,53 @@ select#voiceSelect {
     to   { opacity: 1; transform: translateY(0); }
   }
   
+.social-icons {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  .social-icon {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 28px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    background: #333;
+    box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  }
+  
+  .social-icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 20px rgba(255,255,255,0.4);
+  }
+  
+  .social-icon.instagram { background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5); }
+  .social-icon.github { background: #24292e; }
+  .social-icon.linkedin { background: #0077b5; }
+  
+  .social-icon i {
+    vertical-align: middle;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.3); }
+    70% { box-shadow: 0 0 0 15px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+  
+  .social-icon:hover {
+    animation: pulse 1s infinite;
+  }
+
+  .social-icon.clicked {
+    transform: scale(1.2) rotate(10deg);
+  }
+  
   
     </style>
 </head>
@@ -626,7 +698,7 @@ select#voiceSelect {
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
+                <li><a href="#projects">Project</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="menu-icon">&#9776;</div>
@@ -636,7 +708,7 @@ select#voiceSelect {
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1 class="typing-text">Hello World</h1>
+            <h1 class="typing-text">Hi Welcome To My Profile!</h1>
             <p></p>
             <a href="#projects" class="btn">More</a>
         </div>
@@ -700,7 +772,7 @@ select#voiceSelect {
 
 
     <section id="projects" class="projects">
-        <h2>My Projects</h2>
+        <h2>My Project</h2>
         <div class="project-grid">
             <div class="project-card">
                 <video src="images\Video-1.mp4" controls></video>
@@ -733,11 +805,23 @@ select#voiceSelect {
     <section id="contact" class="contact">
         <h2>Contact Me</h2>
         <form action="https://formspree.io/f/xqaevnza" method="post" class="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" rows="5" required></textarea>
             <button type="submit" class="btn">Send Message</button>
         </form>
+        <div class="social-icons">
+            <a href="https://instagram.com/lemzhr" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://github.com/yourusername" target="_blank" class="social-icon github">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/ariel-aprielyullah-687243352/" target="_blank" class="social-icon linkedin">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+        </div>
+          
     </section>
 
 
@@ -841,7 +925,6 @@ select#voiceSelect {
                 speechSynthesis.speak(utterance);
             }
 
-            // Event binding
             window.onload = () => {
                 if (typeof speechSynthesis !== "undefined") {
                     loadVoicesUntilAvailable();
