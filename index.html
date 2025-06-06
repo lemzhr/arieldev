@@ -91,40 +91,7 @@
         <img src="images\arduino-logo.png" alt="Arduino">
         <img src="images\Laravel.png" alt="Laravel">
     </div>
-
-    <div class="adsbygoogle-wrapper">
-        <div class="ad-placeholder-text" id="adPlaceholder">Iklan akan muncul di sini...</div>
-    
-        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2811761116248604" data-ad-slot="8863600711"
-            data-ad-format="auto" data-full-width-responsive="true">
-        </ins>
-    </div>
-    
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811761116248604"
-        crossorigin="anonymous"></script>
-    
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-
-        // Tunda penghapusan teks hanya jika iframe benar-benar ada
-        let attempts = 0;
-        const maxAttempts = 20; // Coba selama 10 detik maksimal
-        const interval = setInterval(() => {
-            const adIns = document.querySelector('.adsbygoogle');
-            const iframe = adIns?.querySelector('iframe');
-
-            if (iframe) {
-                document.getElementById('adPlaceholder').style.display = 'none';
-                clearInterval(interval);
-            }
-
-            attempts++;
-            if (attempts >= maxAttempts) clearInterval(interval);
-        }, 500);
-    </script>
       
-      
-
     <section id="projects" class="projects">
         <h2>My Project</h2>
         <div class="project-grid">
