@@ -92,14 +92,42 @@
         <img src="images\Laravel.png" alt="Laravel">
     </div>
 
+    <div class="adsbygoogle-wrapper">
+        <!-- Placeholder Teks -->
+        <div class="ad-placeholder-text" id="adPlaceholder">Iklan akan muncul di sini...</div>
+    
+        <!-- Slot Iklan -->
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2811761116248604" data-ad-slot="8863600711"
+            data-ad-format="auto" data-full-width-responsive="true">
+        </ins>
+    </div>
+    
+    <!-- Script AdSense (hanya sekali) -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2811761116248604"
         crossorigin="anonymous"></script>
-    <!-- AAY -->
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2811761116248604" data-ad-slot="8863600711"
-        data-ad-format="auto" data-full-width-responsive="true"></ins>
+    
+    <!-- Script Pemroses Iklan dan Placeholder -->
     <script>
         (adsbygoogle = window.adsbygoogle || []).push({});
+
+        // Hilangkan placeholder jika iklan muncul
+        const checkAdLoaded = () => {
+            const adIns = document.querySelector('.adsbygoogle');
+            const iframe = adIns?.querySelector('iframe');
+            if (iframe) {
+                document.getElementById('adPlaceholder').style.display = 'none';
+            }
+        };
+
+        // Coba cek berulang beberapa kali (karena iframe bisa lambat dimuat)
+        let attempts = 0;
+        const interval = setInterval(() => {
+            checkAdLoaded();
+            attempts++;
+            if (attempts >= 10) clearInterval(interval); // Stop setelah 10x (5 detik)
+        }, 500);
     </script>
+      
 
     <section id="projects" class="projects">
         <h2>My Project</h2>
