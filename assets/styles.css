@@ -167,7 +167,21 @@ nav a:hover::after {
     }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
     .hero {
         padding: 6rem 1rem;
     }
@@ -185,6 +199,57 @@ nav a:hover::after {
     .btn {
         font-size: 0.9rem;
         padding: 0.6rem 1.2rem;
+    }
+
+    /* About Section */
+    .about-content {
+        flex-direction: column;
+    }
+
+    /* Project Grid for Mobile */
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(140px, 1fr));
+        /* 2 columns, min 140px */
+        gap: 1rem;
+        /* Reduce gap for mobile */
+        padding: 0 1rem;
+        /* Add padding to prevent edge touching */
+    }
+
+    .project-card {
+        max-width: 100%;
+        /* Full width within grid cell */
+        padding: 0.75rem;
+        /* Slightly reduce padding */
+    }
+
+    .project-card video {
+        max-width: 100%;
+        /* Ensure video scales properly */
+    }
+
+    /* Stack Container */
+    .stack-container img {
+        width: 40px;
+        /* Slightly smaller icons for mobile */
+        height: 40px;
+    }
+
+    /* Contact Form */
+    .contact-form {
+        padding: 0 1rem;
+    }
+
+    /* Popup Container */
+    #popupContainer {
+        width: 95%;
+        /* Slightly wider for small screens */
+        padding: 20px;
+    }
+
+    #tts-input {
+        padding: 10px;
+        /* Adjust textarea padding for mobile */
     }
 }
 
@@ -209,14 +274,20 @@ nav a:hover::after {
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
-    color: #ffffff;
+    justify-content: center; /* Center the grid items */
 }
 
 .project-card {
     background: #1375bc;
     padding: 1rem;
-    border-radius: 5px;
+    border-radius: 10px;
     transition: transform 0.3s ease;
+    width: 320px;
+    /* Allow card to take full available width */
+    max-width: 350px;
+    /* Cap max width for larger screens */
+    margin: 0 auto;
+    /* Center cards within their grid cell */
 }
 
 .project-card video {
@@ -226,14 +297,6 @@ nav a:hover::after {
     border-radius: 10px;
     display: block;
     margin: 0 auto;
-}
-
-.project-card {
-    background-color: #1375bc;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    width: 320px;
 }
 
 .typing-container {
